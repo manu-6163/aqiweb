@@ -1,6 +1,7 @@
 ﻿using ABCDCRUD.Models;
 using System.Data.SqlClient;
 using System.Data;
+using Microsoft.IdentityModel.Tokens;
 
 namespace ABCDCRUD.Data
 {
@@ -96,7 +97,7 @@ namespace ABCDCRUD.Data
                     cmd.Parameters.AddWithValue("nombre2", (oAsegurado.Nombre2 == null) ? DBNull.Value : oAsegurado.Nombre2);
                     cmd.Parameters.AddWithValue("apellido1", oAsegurado.Apellido1);
                     cmd.Parameters.AddWithValue("apellido2", oAsegurado.Apellido2);
-                    cmd.Parameters.AddWithValue("celular", oAsegurado.Celular.Substring(1).Replace(" ", ""));
+                    cmd.Parameters.AddWithValue("celular",(!oAsegurado.Celular.IsNullOrEmpty()) ? oAsegurado.Celular.Substring(1).Replace(" ", ""): oAsegurado.Celular);
                     cmd.Parameters.AddWithValue("email", oAsegurado.Email);
                     cmd.Parameters.AddWithValue("fechaNac", oAsegurado.FechaNacimiento);
                     cmd.Parameters.AddWithValue("valorSeguro", oAsegurado.ValorSeguro);
@@ -137,7 +138,7 @@ namespace ABCDCRUD.Data
                     cmd.Parameters.AddWithValue("nombre2", (oAsegurado.Nombre2 == null) ? DBNull.Value : oAsegurado.Nombre2);
                     cmd.Parameters.AddWithValue("apellido1", oAsegurado.Apellido1);
                     cmd.Parameters.AddWithValue("apellido2", oAsegurado.Apellido2);
-                    cmd.Parameters.AddWithValue("celular", oAsegurado.Celular.Substring(1).Replace(" ",""));
+                    cmd.Parameters.AddWithValue("celular", (!oAsegurado.Celular.IsNullOrEmpty()) ? oAsegurado.Celular.Substring(1).Replace(" ","") : oAsegurado.Celular);
                     cmd.Parameters.AddWithValue("email", oAsegurado.Email);
                     cmd.Parameters.AddWithValue("fechaNac", oAsegurado.FechaNacimiento);
                     cmd.Parameters.AddWithValue("valorSeguro", oAsegurado.ValorSeguro);
