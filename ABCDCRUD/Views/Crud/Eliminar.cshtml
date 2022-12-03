@@ -1,0 +1,32 @@
+﻿@model Asegurado
+@{
+    ViewData["Title"] = "Eliminar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="card">
+  <div class="card-header">
+    Editar Asegurado
+  </div>
+  <div class="card-body">
+    
+
+      <form asp-action="Eliminar" asp-controller="Crud" method="post">
+
+       <input asp-for="Identificacion" type="hidden" class="form-control">
+
+       <div class="alert alert-danger" role="alert">
+                ¿Desea eliminar el asegurado : @Html.DisplayTextFor(m => m.Nombre1) @Html.DisplayTextFor(m => m.Apellido1) ?
+        </div>
+   
+      <button type="submit" class="btn btn-danger">Elimnar</button>
+      <a asp-action="Admin" asp-controller="Crud" class="btn btn-warning">Volver a la lista</a>
+    </form>
+
+
+  </div>
+</div>
+
+
+

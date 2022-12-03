@@ -1,0 +1,73 @@
+﻿@model Asegurado
+@{
+    ViewData["Title"] = "Editar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript" src="~/js/general.js"></script>
+@section Scripts {
+<script>
+    $(document).ready(function () {
+        $('#phone').mask("+99 999 999 9999");
+    });
+</script>
+}
+
+<div class="card">
+  <div class="card-header">
+    Editar Asegurado
+  </div>
+  <div class="card-body">
+    
+
+      <form asp-action="Editar" asp-controller="Crud" method="post">
+
+           <input asp-for="Identificacion" type="hidden" class="form-control">
+      <div class="mb-3">
+        <label class="form-label">Primer Nombre</label>
+        <input asp-for="Nombre1" type="text" class="form-control">
+        <span asp-validation-for="Nombre1" class="text-danger"></span>
+      </div>
+      <div class="mb-3">
+            <label class="form-label">Segundo Nombre</label>
+            <input asp-for="Nombre2" type="text" class="form-control">
+            <span asp-validation-for="Nombre2" class="text-danger"></span>
+      </div>
+       <div class="mb-3">
+        <label class="form-label">Primer Apellido</label>
+        <input asp-for="Apellido1" type="text" class="form-control">
+        <span asp-validation-for="Apellido1" class="text-danger"></span>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Segundo Apellido</label>
+        <input asp-for="Apellido2" type="text" class="form-control">
+        <span asp-validation-for="Apellido2" class="text-danger"></span>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Número de Contacto</label>
+        <input id="phone" asp-for="Celular" type="text" class="form-control">
+        <span asp-validation-for="Celular" class="text-danger"></span>
+      </div>
+       <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input asp-for="Email" type="text" class="form-control">
+        <span asp-validation-for="Email" class="text-danger"></span>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Fecha de Nacimiento</label>
+        <input asp-for="FechaNacimiento" type="date" class="form-control datepicker">
+        <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Valor Seguro</label>
+                <input asp-for="ValorSeguro" type="text" onkeypress="return CheckNumeric(event);"
+                class="form-control form-control-line">
+        <span asp-validation-for="ValorSeguro" class="text-danger"></span>
+      </div>
+      <button type="submit" class="btn btn-primary">Guardar</button>
+      <a asp-action="Admin" asp-controller="Crud" class="btn btn-warning">Volver a la lista</a>
+    </form>
+
+
+  </div>
+</div>
+

@@ -1,0 +1,62 @@
+﻿@model Asegurado
+@{
+    ViewData["Title"] = "Eliminar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="card">
+  <div class="card-header">
+    Importar CSV
+  </div>
+  <div class="card-body">
+    
+
+     <div class="row">    
+    <div class="col-sm-12" style="padding-bottom:20px">    
+            <div class="col-sm-4">    
+                <span>Seleccione archivo  :</span>    
+            </div>    
+            <div class="col-sm-4">    
+                <input class="form-control" type="file" name="importFile" id="importFile" />    
+            </div>    
+            <div class="col-sm-4">    
+                <input class="btn btn-primary" id="btnUpload" type="button" value="Cargar" />    
+            </div>
+                <br />
+                <a asp-action="Admin" asp-controller="Crud" class="btn btn-warning">Volver a la lista</a>
+        </div>
+      </div>
+
+        @section scripts{
+            <script>
+
+                $(document).on("click", "#btnUpload", function () {
+                    var files = $("#importFile").get(0).files;
+
+                    var formData = new FormData();
+                    formData.append('importFile', files[0]);
+
+                    $.ajax({
+                        url: '/Crud/ImportFile',
+                        data: formData,
+                        type: 'POST',
+                        contentType: false,
+                        processData: false,
+                        success: function (data) {
+                            if (data.status === 1) {
+                                alert(data.message);
+                            } else {
+                                alert("Error al importar");
+                            }
+                        }
+                    });
+                });
+            </script>
+        }
+
+    </div>
+</div>
+
+
+

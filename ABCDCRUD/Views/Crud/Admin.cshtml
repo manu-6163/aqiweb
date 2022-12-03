@@ -1,0 +1,86 @@
+﻿@model List<Asegurado>
+@{
+    ViewData["Title"] = "Listar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="card">
+  <div class="card-header">
+    Lista Asegurados
+  </div>
+  <div class="card-body">
+        <a asp-action="Asegurado" asp-controller="Crud" class="btn btn-success"><i class="bi bi-plus-circle"></i> Nuevo</a>
+        <a asp-action="Masivo" style="float:right;" asp-controller="Crud" class="btn btn-light"><i class="bi bi-plus-circle"></i> Importar CSV</a>
+    <hr />
+    <table id="tblAsegurado" class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Identificación</th>
+                <th>Primer Nombre</th>
+                <th>Segundo Nombre</th>
+                <th>Primer Apellido</th>
+                <th>Segundo Apellido</th>
+                <th>Número de contacto</th>
+                <th>E-mail</th>
+                <th>Fecha de nacimiento</th>
+                <th>Valor solicitud seguro</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Identificacion</td>
+                        <td>@item.Nombre1</td>
+                        <td>@item.Nombre2</td>
+                        <td>@item.Apellido1</td>
+                        <td>@item.Apellido2</td>
+                        <td>@item.Celular</td>
+                        <td>@item.Email</td>
+                        <td>@item.FechaNacimiento.ToString("dd/MM/yyyy")</td>
+                        <td>@item.ValorSeguro</td>
+                        <td>
+                             <a asp-action="Editar" asp-controller="Crud" style="min-width:70px;" class="btn btn-primary btn-sm" asp-route-Identificacion="@item.Identificacion" >Editar</a>
+                            <a asp-action="Eliminar" asp-controller="Crud" style="min-width:70px;" class="btn btn-danger btn-sm" asp-route-Identificacion="@item.Identificacion">Eliminar</a>
+                        </td>
+                    </tr>
+
+                }
+        </tbody>
+    </table>
+
+        @section Scripts {
+            <script>
+                $(document).ready(function () {
+                    $('#tblAsegurado').DataTable({
+                        language: {
+                        "decimal": "",
+                        "emptyTable": "No hay información",
+                        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                        "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                        "infoPostFix": "",
+                        "thousands": ",",
+                        "lengthMenu": "Mostrar _MENU_ Entradas",
+                        "loadingRecords": "Cargando...",
+                        "processing": "Procesando...",
+                        "search": "Buscar:",
+                        "zeroRecords": "Sin resultados encontrados",
+                        "paginate": {
+                            "first": "Primero",
+                            "last": "Ultimo",
+                            "next": "Siguiente",
+                            "previous": "Anterior"
+                        }
+                    }
+                    });
+                });
+            </script>
+        }    
+
+  </div>
+</div>
+
